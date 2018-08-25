@@ -1,0 +1,50 @@
+<form id="form-login" class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p *ngIf="error" id="form-login-error" class="error error-ribbon error-background-color copy">
+    {{error}}
+  </p>
+
+  <mat-form-field id="form-login-input-storeId" class="input">
+    <input matInput placeholder="STORE ID" formControlName="storeId" name="storeId" required>
+
+    <div *ngIf="storeId.invalid && (storeId.dirty || storeId.touched)"
+      class="field-error error-color">
+      <p *ngIf="storeId.errors.required">
+        Store ID is required.
+      </p>
+    </div>
+
+  </mat-form-field>
+
+  <mat-form-field id="form-login-input-password" class="input password">
+    <input matInput placeholder="PASSWORD" formControlName="password" name="password" type="password" required>
+
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+      class="field-error error-color">
+      <p *ngIf="password.errors.required">
+        Password is required.
+      </p>
+    </div>
+
+  </mat-form-field>
+
+  <div id="form-login-actions" class="wrapper actions">
+      <button id="form-login-submit" class="submit button" mat-raised-button color="primary" [disabled]="form.status!='VALID'">LOG IN</button>
+  </div>
+
+  <div *ngIf="debug">
+      <br />
+      <p>Form value: {{ form.value | json }}</p>
+      <p>Form status: {{ form.status | json }}</p>
+      <p>Form pristine?: {{ form.pristine | json }}</p>
+      <p>Form untouched?: {{ form.untouched | json }}</p>
+      <p>storeId value: {{ form.get('storeId').value }}</p>
+      <p>storeId status: {{ form.get('storeId').status }}</p>
+      <p>storeId pristine?: {{ form.get('storeId').pristine }}</p>
+      <p>storeId untouched?: {{ form.get('storeId').untouched }}</p>
+      <p>password value: {{ form.get('password').value }}</p>
+      <p>password status: {{ form.get('password').status }}</p>
+      <p>password pristine?: {{ form.get('password').pristine }}</p>
+      <p>password untouched?: {{ form.get('password').untouched }}</p>
+  </div>
+
+</form>
